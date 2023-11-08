@@ -1,3 +1,3 @@
-const server = require('../dist/memory/server/server.mjs');
+import { app } from '../dist/memory/server/server.mjs';
 
-module.exports = server.app();
+module.exports = app();
