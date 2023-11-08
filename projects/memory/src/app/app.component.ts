@@ -10,5 +10,5 @@ import { RouterOutlet } from '@angular/router';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-	items = ['Test1', 'Test2', 'Test 3', 'Test 4']
+	items = ['Test1', 'Test2', 'Test 3', 'Test 4', 'Test 5']
 }
