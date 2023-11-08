@@ -1,3 +1,5 @@
-import { app } from '../dist/memory/server/server.mjs';
-
-module.exports = app();
+module.exports = async () => {
+	const module = await import('../dist/memory/server/server.mjs');
+	const app = module.app;
+	return app();
+};
