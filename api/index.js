@@ -3,8 +3,8 @@
 // Use async function to handle the dynamic import
 module.exports = async () => {
 	// Dynamically import the ES module
-	const app = await import('../dist/memory/server/main.server.mjs');
+	const server = await import('../dist/memory/server/main.server.mjs');
 
 	// Return the app from the imported module
-	return app();
+	return server.app();
 };
