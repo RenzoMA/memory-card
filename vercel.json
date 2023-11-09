@@ -4,7 +4,7 @@
 	"name": "memory-card",
 	"rewrites": [{ "source": "/(.*)", "destination": "/api" }],
 	"functions": {
-		"api/index.js": {
+		"api/index.ts": {
 			"includeFiles": "dist/memory/browser/**"
 		}
 	}
