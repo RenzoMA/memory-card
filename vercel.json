@@ -2,7 +2,6 @@
 	"version": 2,
 	"public": true,
 	"name": "memory-card",
-	"rewrites": [{ "source": "/(.*)", "destination": "/api" }],
 	"functions": {
 		"api/index.js": {
 			"includeFiles": "dist/memory/browser/**"
