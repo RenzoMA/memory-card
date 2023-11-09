@@ -6,5 +6,5 @@ module.exports = async () => {
 	const { app } = await import('../dist/memory/server/server.mjs');
 
 	// Return the app from the imported module
-	return app;
+	return app();
 };
