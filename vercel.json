@@ -2,6 +2,10 @@
 	"version": 2,
 	"public": true,
 	"name": "memory-card",
-	"rewrites": [{ "source": "/(.*)", "destination": "/api" }]
-	
+	"rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+	"functions": {
+		"api/index.mjs": {
+			"includeFiles": "dist/memory/browser/**"
+		}
+	}
 }
