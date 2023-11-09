@@ -1,5 +1,9 @@
-<div class="container-fluid">
-	@for (card of cards; track card.id) {
-	<app-card [card]="card"></app-card>
-	}
+<div class="container px-4 py-5">
+	<div class="row gy-4">
+		@for (card of cards; track card.id) {
+
+		<app-card class="col-6" [card]="card"></app-card>
+
+		}
+	</div>
 </div>
