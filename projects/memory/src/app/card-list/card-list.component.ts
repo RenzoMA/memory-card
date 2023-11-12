@@ -12,6 +12,7 @@ import { Card } from '../models/card.model';
 import { CardComponent } from '../card/card.component';
 import { bufferCount, concatMap, delay, map, merge, of, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { duplicateAndRamdomize } from '../utils/duplicate-randomize-cards.transform';
 
 @Component({
 	selector: 'app-card-list',
@@ -65,13 +66,4 @@ export class CardListComponent implements AfterViewInit {
 			)
 			.subscribe();
 	}
-}
-
-function duplicateAndRamdomize(cards: Card[]) {
-	return cards
-		.flatMap(card => [
-			{ ...card, id: card.id + '_1' },
-			{ ...card, id: card.id + '_2' },
-		])
-		.sort(() => Math.random() - 0.5);
 }

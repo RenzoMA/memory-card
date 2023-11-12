@@ -1,7 +1,8 @@
 <div
-	[@borderErrorAnimation]="borderState"
-	[@borderSuccessAnimation]="borderState"
-	class="card shadow-sm rounded-3 card-size"
+	[@animationError]="cardBorderState"
+	[@animationSuccess]="cardBorderState"
+	[@animationFlip]="flipState"
+	class="card shadow-sm rounded-3 card-size border-0"
 	role="button"
 	(click)="reveal()">
 	<div class="card-body p-0 d-flex">

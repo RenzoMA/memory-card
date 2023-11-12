@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { Card } from '../models/card.model';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-	animate,
-	state,
-	style,
-	transition,
-	trigger,
-} from '@angular/animations';
+	CardBorderState,
+	CardFlipState,
+	cardErrorAnimation,
+	cardFlipAnimation,
+	cardFlipStateMap,
+	cardSuccessAnimation,
+} from '../animations/card.animations';
 
 @Component({
 	selector: 'app-card',
@@ -16,63 +17,47 @@ import {
 	imports: [CommonModule, FontAwesomeModule],
 	templateUrl: './card.component.html',
 	styleUrl: './card.component.scss',
-	animations: [
-		trigger('borderErrorAnimation', [
-			state(
-				'normal',
-				style({
-					border: '2px solid transparent',
-				})
-			),
-			state(
-				'error',
-				style({
-					border: '2px solid red',
-				})
-			),
-			transition('normal <=> error', animate('300ms')),
-		]),
-		trigger('borderSuccessAnimation', [
-			state(
-				'normal',
-				style({
-					border: '2px solid transparent',
-				})
-			),
-			state(
-				'success',
-				style({
-					border: '2px solid green',
-				})
-			),
-			transition('normal <=> success', animate('500ms')),
-		]),
-	],
+	animations: [cardErrorAnimation, cardSuccessAnimation, cardFlipAnimation],
 })
 export class CardComponent {
 	@Input({ required: true }) card!: Card;
 	@Output() selected = new EventEmitter<CardComponent>();
 
+	private readonly FLIP_STATE_DELAY = 150;
 	isFaceDown: boolean = true;
-	borderState = 'normal';
+	cardBorderState = CardBorderState.Default;
+	flipState = CardFlipState.Back;
 
 	public hide() {
-		this.isFaceDown = true;
+		this.toggleFlipState();
+		setTimeout(() => {
+			this.isFaceDown = true;
+		}, this.FLIP_STATE_DELAY);
 	}
 
 	public reveal() {
 		if (this.isFaceDown) {
-			this.isFaceDown = false;
-			this.selected.emit(this);
+			this.toggleFlipState();
+			setTimeout(() => {
+				this.isFaceDown = false;
+				this.selected.emit(this);
+			}, this.FLIP_STATE_DELAY);
 		}
 	}
 
 	public animateSuccess() {
-		this.borderState = 'success';
-		setTimeout(() => (this.borderState = 'normal'), 500);
+		this.animateBorderState(CardBorderState.Success);
 	}
 	public animateError() {
-		this.borderState = 'error';
-		setTimeout(() => (this.borderState = 'normal'), 500);
+		this.animateBorderState(CardBorderState.Error);
+	}
+
+	public animateBorderState(newState: CardBorderState) {
+		this.cardBorderState = newState;
+		setTimeout(() => (this.cardBorderState = CardBorderState.Default), 400);
+	}
+
+	private toggleFlipState() {
+		this.flipState = cardFlipStateMap[this.flipState];
 	}
 }
