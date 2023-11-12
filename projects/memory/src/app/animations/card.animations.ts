@@ -29,21 +29,33 @@ export const cardFlipStateMap = {
 };
 
 export const cardErrorAnimation = trigger(CardAnimation.Error, [
-	transition(`${CardBorderState.Default} => ${CardBorderState.Error}`, [
-		animate('400ms', style({ backgroundColor: 'rgba(255, 0, 0, 0.3)' })),
-	]),
-	transition(`${CardBorderState.Error} => ${CardBorderState.Default}`, [
-		animate('300ms', style({ backgroundColor: 'rgba(255, 255, 255)' })),
-	]),
+	state(
+		`${CardBorderState.Default}`,
+		style({ backgroundColor: 'rgba(255, 255, 255)' })
+	),
+	state(
+		`${CardBorderState.Error}`,
+		style({ backgroundColor: 'rgba(255, 0, 0, 0.3)' })
+	),
+	transition(
+		`${CardBorderState.Default} <=> ${CardBorderState.Error}`,
+		animate(500)
+	),
 ]);
 
 export const cardSuccessAnimation = trigger(CardAnimation.Success, [
-	transition(`${CardBorderState.Default} => ${CardBorderState.Success}`, [
-		animate('400ms', style({ backgroundColor: 'rgba(0, 255, 0, 0.3)' })),
-	]),
-	transition(`${CardBorderState.Success} => ${CardBorderState.Default}`, [
-		animate('300ms', style({ backgroundColor: 'rgba(255, 255, 255)' })),
-	]),
+	state(
+		`${CardBorderState.Default}`,
+		style({ backgroundColor: 'rgba(255, 255, 255)' })
+	),
+	state(
+		`${CardBorderState.Success}`,
+		style({ backgroundColor: 'rgba(0, 255, 0, 0.3)' })
+	),
+	transition(
+		`${CardBorderState.Default} <=> ${CardBorderState.Success}`,
+		animate(500)
+	),
 ]);
 
 export const cardFlipAnimation = trigger(CardAnimation.Flip, [

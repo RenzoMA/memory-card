@@ -10,6 +10,7 @@ import {
 	cardFlipStateMap,
 	cardSuccessAnimation,
 } from '../animations/card.animations';
+import { AnimationEvent } from '@angular/animations';
 
 @Component({
 	selector: 'app-card',
@@ -23,10 +24,11 @@ export class CardComponent {
 	@Input({ required: true }) card!: Card;
 	@Output() selected = new EventEmitter<CardComponent>();
 
-	private readonly FLIP_STATE_DELAY = 150;
+	private readonly FLIP_STATE_DELAY = 170;
 	isFaceDown: boolean = true;
 	cardBorderState = CardBorderState.Default;
 	flipState = CardFlipState.Back;
+	isFlipping = false;
 
 	public hide() {
 		this.toggleFlipState();
@@ -36,10 +38,13 @@ export class CardComponent {
 	}
 
 	public reveal() {
-		if (this.isFaceDown) {
+		const isFlippable = this.isFaceDown && !this.isFlipping;
+		if (isFlippable) {
+			this.isFlipping = true;
 			this.toggleFlipState();
 			setTimeout(() => {
 				this.isFaceDown = false;
+				this.isFlipping = false;
 				this.selected.emit(this);
 			}, this.FLIP_STATE_DELAY);
 		}
