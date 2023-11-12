@@ -31,7 +31,6 @@ export class AppComponent {
 		{ id: 'headset', icon: 'headset' },
 		{ id: 'chess', icon: 'chess' },
 		{ id: 'book-skull', icon: 'book-skull' },
-		{ id: 'hand-fist', icon: 'hand-fist' },
 	];
 
 	constructor() {
