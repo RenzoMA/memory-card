@@ -10,12 +10,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { Card } from '../models/card.model';
 import { CardComponent } from '../card/card.component';
-import {
-	bufferCount,
-	delay,
-	merge,
-	tap,
-} from 'rxjs';
+import { bufferCount, concatMap, delay, map, merge, of, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -31,7 +26,7 @@ export class CardListComponent implements AfterViewInit {
 
 	@ViewChildren(CardComponent) componentCards!: QueryList<CardComponent>;
 
-	destroyRef = inject(DestroyRef)
+	destroyRef = inject(DestroyRef);
 
 	ngAfterViewInit(): void {
 		const cardSelectionObservables = this.componentCards.map(card =>
@@ -41,13 +36,29 @@ export class CardListComponent implements AfterViewInit {
 		merge(...cardSelectionObservables)
 			.pipe(
 				bufferCount(2),
-				delay(800),
-				tap(([firstComponent, secondComponent]) => {
+				delay(200),
+				concatMap(([firstComponent, secondComponent]) => {
 					const { card: firstCard } = firstComponent;
 					const { card: secondCard } = secondComponent;
 					if (firstCard.icon !== secondCard.icon) {
-						firstComponent.hide();
-						secondComponent.hide();
+						return of([firstComponent, secondComponent]).pipe(
+							tap(([firstComponent, secondComponent]) => {
+								firstComponent.animateError();
+								secondComponent.animateError();
+							}),
+							delay(500),
+							tap(([firstComponent, secondComponent]) => {
+								firstComponent.hide();
+								secondComponent.hide();
+							})
+						);
+					} else {
+						return of([firstComponent, secondComponent]).pipe(
+							tap(([firstComponent, secondComponent]) => {
+								firstComponent.animateSuccess();
+								secondComponent.animateSuccess();
+							})
+						);
 					}
 				}),
 				takeUntilDestroyed(this.destroyRef)
