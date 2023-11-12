@@ -21,13 +21,17 @@ export class AppComponent {
 	items: Card[] = [
 		{ id: 'heart', icon: 'heart' },
 		{ id: 'ghost', icon: 'ghost' },
-		{ id: 'dragon', icon: 'dragon' },
-		{ id: 'headset', icon: 'headset' },
-		{ id: 'chess', icon: 'chess' },
 		{ id: 'gamepad', icon: 'gamepad' },
 		{ id: 'diamond', icon: 'diamond' },
+		{ id: 'dragon', icon: 'dragon' },
+		{ id: 'scroll', icon: 'scroll' },
+		{ id: 'puzzle-piece', icon: 'puzzle-piece' },
 		{ id: 'dice', icon: 'dice' },
+		{ id: 'ring', icon: 'ring' },
+		{ id: 'headset', icon: 'headset' },
+		{ id: 'chess', icon: 'chess' },
 		{ id: 'book-skull', icon: 'book-skull' },
+		{ id: 'hand-fist', icon: 'hand-fist' },
 	];
 
 	constructor() {

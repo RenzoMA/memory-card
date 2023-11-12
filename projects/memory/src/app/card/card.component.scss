@@ -3,8 +3,8 @@
 @import 'bootstrap/scss/mixins/breakpoints';
 
 .card-size {
-	width: 140px;
-	height: 187px;
+	width: 100px;
+	height: 133px;
 	user-select: none;
 
 	@include media-breakpoint-up(sm) {
@@ -13,7 +13,7 @@
 	}
 
 	@include media-breakpoint-up(lg) {
-		width: 175px; 
-		height: 233px; 
+		width: 157px; 
+		height: 209px; 
 	}
 }
