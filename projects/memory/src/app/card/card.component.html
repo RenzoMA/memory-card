@@ -1,9 +1,16 @@
-<div class="card shadow-sm">
-	<div class="card-body">
-		<h5 class="card-title">{{ card.id }}</h5>
-		<p class="card-text">
-			Some quick example text to build on the card title and make up the bulk of
-			the card's content.
-		</p>
+<div
+	class="card shadow-sm rounded-4"
+	style="width: 156px; height: 207px"
+	role="button"
+	(click)="reveal()">
+	<div class="card-body p-0 d-flex">
+		@if (isFaceDown) {
+		<img class="img-fluid" src="assets/card/back.png" />
+		} @else {
+		<div class="d-flex align-items-center justify-content-center flex-fill">
+			<fa-icon [icon]="card.icon" size="4x"></fa-icon>
+		</div>
+
+		}
 	</div>
 </div>
