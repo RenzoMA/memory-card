@@ -10,7 +10,19 @@ import {
 import { CommonModule } from '@angular/common';
 import { Card } from '../models/card.model';
 import { CardComponent } from '../card/card.component';
-import { bufferCount, concatMap, delay, map, merge, of, tap } from 'rxjs';
+import {
+	Subject,
+	bufferCount,
+	concatMap,
+	delay,
+	first,
+	map,
+	merge,
+	of,
+	takeUntil,
+	tap,
+	timer,
+} from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { duplicateAndRamdomize } from '../utils/duplicate-randomize-cards.transform';
 
@@ -26,13 +38,27 @@ export class CardListComponent implements AfterViewInit {
 		[];
 
 	@ViewChildren(CardComponent) componentCards!: QueryList<CardComponent>;
+	gameCompleted$ = new Subject<void>();
 
 	destroyRef = inject(DestroyRef);
+	elapsedTime = '00:00';
 
 	ngAfterViewInit(): void {
 		const cardSelectionObservables = this.componentCards.map(card =>
 			card.selected.asObservable()
 		);
+
+		const gameTimer$ = merge(...cardSelectionObservables).pipe(
+			first(),
+			concatMap(() => {
+				return timer(0, 1000);
+			}),
+			takeUntil(this.gameCompleted$)
+		);
+
+		gameTimer$.subscribe(seconds => {
+			this.elapsedTime = this.formatTime(seconds);
+		});
 
 		merge(...cardSelectionObservables)
 			.pipe(
@@ -62,8 +88,27 @@ export class CardListComponent implements AfterViewInit {
 						);
 					}
 				}),
+				tap(() => {
+					const isGameCompleted = this.componentCards
+						.toArray()
+						.every(component => !component.isFaceDown);
+					if (isGameCompleted) {
+						this.gameCompleted$.next();
+						this.gameCompleted$.complete();
+					}
+				}),
 				takeUntilDestroyed(this.destroyRef)
 			)
 			.subscribe();
+	}
+
+	formatTime(seconds: number): string {
+		const minutes = Math.floor(seconds / 60);
+		const remainingSeconds = seconds % 60;
+
+		const paddedMinutes = minutes.toString().padStart(2, '0');
+		const paddedSeconds = remainingSeconds.toString().padStart(2, '0');
+
+		return `${paddedMinutes}:${paddedSeconds}`;
 	}
 }
