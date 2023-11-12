@@ -20,7 +20,9 @@ export class CardComponent {
 		this.isFaceDown = true;
 	}
 	public reveal() {
-		this.isFaceDown = false;
-		this.selected.emit(this);
+		if (this.isFaceDown) {
+			this.isFaceDown = false;
+			this.selected.emit(this);
+		}
 	}
 }
