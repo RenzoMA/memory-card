@@ -1,9 +1,11 @@
 import {
 	AfterViewInit,
 	Component,
+	DestroyRef,
 	Input,
 	QueryList,
 	ViewChildren,
+	inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Card } from '../models/card.model';
@@ -29,6 +31,8 @@ export class CardListComponent implements AfterViewInit {
 
 	@ViewChildren(CardComponent) componentCards!: QueryList<CardComponent>;
 
+	destroyRef = inject(DestroyRef)
+
 	ngAfterViewInit(): void {
 		const cardSelectionObservables = this.componentCards.map(card =>
 			card.selected.asObservable()
@@ -46,7 +50,7 @@ export class CardListComponent implements AfterViewInit {
 						secondComponent.hide();
 					}
 				}),
-				takeUntilDestroyed()
+				takeUntilDestroyed(this.destroyRef)
 			)
 			.subscribe();
 	}
