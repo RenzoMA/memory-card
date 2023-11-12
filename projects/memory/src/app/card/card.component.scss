@@ -1,0 +1,19 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins/breakpoints';
+
+.card-size {
+	width: 140px;
+	height: 187px;
+	user-select: none;
+
+	@include media-breakpoint-up(sm) {
+		width: 105px; 
+		height: 140px;
+	}
+
+	@include media-breakpoint-up(lg) {
+		width: 175px; 
+		height: 233px; 
+	}
+}
