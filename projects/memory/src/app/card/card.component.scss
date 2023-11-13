@@ -9,5 +9,9 @@
 }
 
 .icon-size {
-	font-size: 4em;
+	font-size: 3em;
+
+	@include media-breakpoint-up(sm) {
+		font-size: 5em;
+	}
 }
