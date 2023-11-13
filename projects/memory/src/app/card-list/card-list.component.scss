@@ -2,8 +2,14 @@
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins/breakpoints';
 
-@include media-breakpoint-up(md) {
-	.w-md-75 {
-		width: 80% !important;
+:host {
+	max-width: 100%;
+	display: block;
+	margin: auto;
+
+	@include media-breakpoint-up(lg) {
+		max-width: 800px;
+		display: block;
+		margin: auto;
 	}
 }
