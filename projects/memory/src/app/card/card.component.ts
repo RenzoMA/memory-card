@@ -25,7 +25,7 @@ export class CardComponent {
 	@Input({ required: true }) card!: Card;
 	@Output() selected = new EventEmitter<CardComponent>();
 
-	private readonly FLIP_STATE_DELAY = 85;
+	private readonly FLIP_STATE_DELAY = 75;
 	isFaceDown: boolean = true;
 	cardSuccessState = CardBorderState.Default;
 	cardErrorState = CardBorderState.Default;

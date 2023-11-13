@@ -73,6 +73,6 @@ export const cardFlipAnimation = trigger(CardAnimation.Flip, [
 	),
 	transition(
 		`${CardFlipState.Front} <=> ${CardFlipState.Back}`,
-		animate('250ms ease-out')
+		animate('200ms ease-out')
 	),
 ]);
