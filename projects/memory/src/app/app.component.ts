@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [CommonModule, RouterOutlet, CardListComponent, FontAwesomeModule, ],
+	imports: [CommonModule, RouterOutlet, CardListComponent, FontAwesomeModule],
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 })
@@ -30,11 +30,8 @@ export class AppComponent {
 		{ id: 'dice', icon: 'dice' },
 		{ id: 'ring', icon: 'ring' },
 		{ id: 'headset', icon: 'headset' },
-		{ id: 'chess', icon: 'chess' },
-		{ id: 'book-skull', icon: 'book-skull' },
-		{ id: 'headset', icon: 'headset' },
-		{ id: 'chess', icon: 'chess' },
-		{ id: 'book-skull', icon: 'book-skull' },
+		{ id: 'wand-sparkles', icon: 'wand-sparkles' },
+		{ id: 'vr-cardboard', icon: 'vr-cardboard' }
 	];
 
 	constructor() {

@@ -63,7 +63,7 @@ export class CardListComponent implements AfterViewInit {
 		merge(...cardSelectionObservables)
 			.pipe(
 				bufferCount(2),
-				delay(200),
+				delay(100),
 				concatMap(([firstComponent, secondComponent]) => {
 					const { card: firstCard } = firstComponent;
 					const { card: secondCard } = secondComponent;

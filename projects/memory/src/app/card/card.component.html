@@ -1,6 +1,8 @@
 <div
-	[@animationError]="cardBorderState"
-	[@animationSuccess]="cardBorderState"
+	[@animationError]="cardErrorState"
+	[@animationSuccess]="cardSuccessState"
+	(@animationSuccess.done)="cardSuccessDone($event)"
+	(@animationError.done)="cardErrorDone($event)"
 	[@animationFlip]="flipState"
 	class="card shadow-sm rounded-3 card-size border-0"
 	role="button"
@@ -10,7 +12,10 @@
 		<img class="img-fluid" src="assets/card/back.png" />
 		} @else {
 		<div class="d-flex align-items-center justify-content-center flex-fill">
-			<fa-icon [icon]="card.icon" class="icon-size"></fa-icon>
+			<fa-icon
+				[icon]="card.icon"
+				class="icon-size"
+				[style.color]="card.color"></fa-icon>
 		</div>
 		}
 	</div>

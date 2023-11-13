@@ -35,11 +35,11 @@ export const cardErrorAnimation = trigger(CardAnimation.Error, [
 	),
 	state(
 		`${CardBorderState.Error}`,
-		style({ backgroundColor: 'rgba(255, 0, 0, 0.3)' })
+		style({ backgroundColor: 'rgba(255, 100, 100, 0.6)' })
 	),
 	transition(
 		`${CardBorderState.Default} <=> ${CardBorderState.Error}`,
-		animate(500)
+		animate(200)
 	),
 ]);
 
@@ -50,11 +50,11 @@ export const cardSuccessAnimation = trigger(CardAnimation.Success, [
 	),
 	state(
 		`${CardBorderState.Success}`,
-		style({ backgroundColor: 'rgba(0, 255, 0, 0.3)' })
+		style({ backgroundColor: 'rgba(100, 255, 100, 1)' })
 	),
 	transition(
 		`${CardBorderState.Default} <=> ${CardBorderState.Success}`,
-		animate(500)
+		animate(200)
 	),
 ]);
 
@@ -73,6 +73,6 @@ export const cardFlipAnimation = trigger(CardAnimation.Flip, [
 	),
 	transition(
 		`${CardFlipState.Front} <=> ${CardFlipState.Back}`,
-		animate('500ms ease-out')
+		animate('250ms ease-out')
 	),
 ]);

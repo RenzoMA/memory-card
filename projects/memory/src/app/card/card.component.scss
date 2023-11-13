@@ -13,14 +13,14 @@
 	}
 
 	@include media-breakpoint-up(lg) {
-		width: 157px; 
-		height: 209px; 
+		width: 151px; 
+		height: 201px; 
 	}
 }
 
 .icon-size {
     font-size: 2em;
 	@include media-breakpoint-up(sm) {
-		font-size: 6em;
+		font-size: 5em;
 	}
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Card } from '../models/card.model';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
+	CardAnimation,
 	CardBorderState,
 	CardFlipState,
 	cardErrorAnimation,
@@ -24,9 +25,10 @@ export class CardComponent {
 	@Input({ required: true }) card!: Card;
 	@Output() selected = new EventEmitter<CardComponent>();
 
-	private readonly FLIP_STATE_DELAY = 170;
+	private readonly FLIP_STATE_DELAY = 85;
 	isFaceDown: boolean = true;
-	cardBorderState = CardBorderState.Default;
+	cardSuccessState = CardBorderState.Default;
+	cardErrorState = CardBorderState.Default;
 	flipState = CardFlipState.Back;
 	isFlipping = false;
 
@@ -51,18 +53,25 @@ export class CardComponent {
 	}
 
 	public animateSuccess() {
-		this.animateBorderState(CardBorderState.Success);
+		this.cardSuccessState = CardBorderState.Success;
 	}
 	public animateError() {
-		this.animateBorderState(CardBorderState.Error);
-	}
-
-	public animateBorderState(newState: CardBorderState) {
-		this.cardBorderState = newState;
-		setTimeout(() => (this.cardBorderState = CardBorderState.Default), 400);
+		this.cardErrorState = CardBorderState.Error;
 	}
 
 	private toggleFlipState() {
 		this.flipState = cardFlipStateMap[this.flipState];
+	}
+
+	public cardSuccessDone(animation: AnimationEvent) {
+		if (animation.fromState !== 'void') {
+			this.cardSuccessState = CardBorderState.Default;
+		}
+	}
+
+	public cardErrorDone(animation: AnimationEvent) {
+		if (animation.fromState !== 'void') {
+			this.cardErrorState = CardBorderState.Default;
+		}
 	}
 }
