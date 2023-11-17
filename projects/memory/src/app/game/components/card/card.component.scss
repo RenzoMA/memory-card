@@ -8,11 +8,3 @@
 	user-select: none;
 	aspect-ratio: 3/4;
 }
-
-.icon-size {
-	font-size: 2em;
-
-	@include media-breakpoint-up(sm) {
-		font-size: 4em;
-	}
-}
