@@ -32,7 +32,9 @@
             "styles": [
               "projects/memory/src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "projects/memory/src/main.server.ts",
             "prerender": true,
             "ssr": {

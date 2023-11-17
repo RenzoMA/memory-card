@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Card } from '../models/card.model';
+import { Card } from '../../models/card.model';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
 	CardAnimation,
@@ -10,7 +10,7 @@ import {
 	cardFlipAnimation,
 	cardFlipStateMap,
 	cardSuccessAnimation,
-} from '../animations/card.animations';
+} from '../../animations/card.animations';
 import { AnimationEvent } from '@angular/animations';
 
 @Component({

@@ -1,1 +1,20 @@
-@import "bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+$primary: #6f42c1; // A rich purple shade
+$secondary: #ffd740; // A lighter purple, for a harmonious secondary color
+$success: #4caf50; // A green that complements purple
+$info: #17a2b8; // A calm blue, works well with purple
+$warning: #ff9800; // An orange shade for contrast
+$danger: #e53935; // A slightly muted red for danger/warnings
+$light: #f8f9fa; // A light shade for backgrounds
+$dark: #343a40; // Dark grey for text and dark elements
+
+$font-family-base: 'Poppins', sans-serif, cursive;
+
+@import 'bootstrap/scss/bootstrap';
+
+html,
+body {
+	height: 100%;
+}
+

@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/">
+			<img src="assets/header-card.png" alt="" width="73" height="48" />
+		</a>
+		<button
+			class="navbar-toggler"
+			type="button"
+			data-bs-toggle="collapse"
+			data-bs-target="#navbarNavAltMarkup"
+			aria-controls="navbarNavAltMarkup"
+			aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+				<a
+					class="nav-link"
+					href="javascript:void(0)"
+					routerLink="/"
+					routerLinkActive="active"
+					[routerLinkActiveOptions]="{ exact: true }">
+					Home
+				</a>
+				<a class="nav-link" href="javascript:void(0)" routerLink="/play" routerLinkActive="active">
+					Play Now
+				</a>
+				<a class="nav-link" href="javascript:void(0)" routerLink="/instructions" routerLinkActive="active">
+					Instructions
+				</a>
+			</div>
+		</div>
+	</div>
+</nav>

@@ -1,10 +1,4 @@
-import {
-	animate,
-	state,
-	style,
-	transition,
-	trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 export enum CardAnimation {
 	Error = 'animationError',
@@ -29,33 +23,15 @@ export const cardFlipStateMap = {
 };
 
 export const cardErrorAnimation = trigger(CardAnimation.Error, [
-	state(
-		`${CardBorderState.Default}`,
-		style({ backgroundColor: 'rgba(255, 255, 255)' })
-	),
-	state(
-		`${CardBorderState.Error}`,
-		style({ backgroundColor: 'rgba(255, 100, 100, 0.6)' })
-	),
-	transition(
-		`${CardBorderState.Default} <=> ${CardBorderState.Error}`,
-		animate(200)
-	),
+	state(`${CardBorderState.Default}`, style({ backgroundColor: 'rgba(255, 255, 255)' })),
+	state(`${CardBorderState.Error}`, style({ backgroundColor: 'rgba(255, 100, 100, 0.6)' })),
+	transition(`${CardBorderState.Default} <=> ${CardBorderState.Error}`, animate(200)),
 ]);
 
 export const cardSuccessAnimation = trigger(CardAnimation.Success, [
-	state(
-		`${CardBorderState.Default}`,
-		style({ backgroundColor: 'rgba(255, 255, 255)' })
-	),
-	state(
-		`${CardBorderState.Success}`,
-		style({ backgroundColor: 'rgba(100, 255, 100, 1)' })
-	),
-	transition(
-		`${CardBorderState.Default} <=> ${CardBorderState.Success}`,
-		animate(200)
-	),
+	state(`${CardBorderState.Default}`, style({ backgroundColor: 'rgba(255, 255, 255)' })),
+	state(`${CardBorderState.Success}`, style({ backgroundColor: 'rgba(100, 255, 100, 1)' })),
+	transition(`${CardBorderState.Default} <=> ${CardBorderState.Success}`, animate(200)),
 ]);
 
 export const cardFlipAnimation = trigger(CardAnimation.Flip, [
@@ -71,8 +47,5 @@ export const cardFlipAnimation = trigger(CardAnimation.Flip, [
 			transform: 'rotateY(180deg)',
 		})
 	),
-	transition(
-		`${CardFlipState.Front} <=> ${CardFlipState.Back}`,
-		animate('200ms ease-out')
-	),
+	transition(`${CardFlipState.Front} <=> ${CardFlipState.Back}`, animate('200ms ease-out')),
 ]);

@@ -24,7 +24,7 @@ function generatePastelColor(): string {
 	let b = getRandomInt(20, 120);
 
 	// Convert to hexadecimal format
-	return `#${r.toString(16).padStart(2, '0')}${g
+	return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b
 		.toString(16)
-		.padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+		.padStart(2, '0')}`;
 }

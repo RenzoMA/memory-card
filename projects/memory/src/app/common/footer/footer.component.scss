@@ -1,0 +1,10 @@
+:host {
+	a {
+		text-decoration: none;
+        color: var(--bs-dark);
+	}
+	a:hover {
+		text-decoration: underline;
+		color: var(--bs-primary);
+	}
+}

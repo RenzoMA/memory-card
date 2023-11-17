@@ -1,30 +1,10 @@
-import {
-	AfterViewInit,
-	Component,
-	DestroyRef,
-	Input,
-	QueryList,
-	ViewChildren,
-	inject,
-} from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, Input, QueryList, ViewChildren, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Card } from '../models/card.model';
+import { Card } from '../../models/card.model';
 import { CardComponent } from '../card/card.component';
-import {
-	Subject,
-	bufferCount,
-	concatMap,
-	delay,
-	first,
-	map,
-	merge,
-	of,
-	takeUntil,
-	tap,
-	timer,
-} from 'rxjs';
+import { Subject, bufferCount, concatMap, delay, first, map, merge, of, takeUntil, tap, timer } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { duplicateAndRamdomize } from '../utils/duplicate-randomize-cards.transform';
+import { duplicateAndRamdomize } from '../../utils/duplicate-randomize-cards.transform';
 
 @Component({
 	selector: 'app-card-list',
@@ -34,8 +14,7 @@ import { duplicateAndRamdomize } from '../utils/duplicate-randomize-cards.transf
 	styleUrl: './card-list.component.scss',
 })
 export class CardListComponent implements AfterViewInit {
-	@Input({ required: true, transform: duplicateAndRamdomize }) cards: Card[] =
-		[];
+	@Input({ required: true, transform: duplicateAndRamdomize }) cards: Card[] = [];
 
 	@ViewChildren(CardComponent) componentCards!: QueryList<CardComponent>;
 	gameCompleted$ = new Subject<void>();
@@ -44,9 +23,7 @@ export class CardListComponent implements AfterViewInit {
 	elapsedTime = '00:00';
 
 	ngAfterViewInit(): void {
-		const cardSelectionObservables = this.componentCards.map(card =>
-			card.selected.asObservable()
-		);
+		const cardSelectionObservables = this.componentCards.map(card => card.selected.asObservable());
 
 		const gameTimer$ = merge(...cardSelectionObservables).pipe(
 			first(),
@@ -89,9 +66,7 @@ export class CardListComponent implements AfterViewInit {
 					}
 				}),
 				tap(() => {
-					const isGameCompleted = this.componentCards
-						.toArray()
-						.every(component => !component.isFaceDown);
+					const isGameCompleted = this.componentCards.toArray().every(component => !component.isFaceDown);
 					if (isGameCompleted) {
 						this.gameCompleted$.next();
 						this.gameCompleted$.complete();
