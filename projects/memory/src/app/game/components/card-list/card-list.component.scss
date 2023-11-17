@@ -9,7 +9,8 @@
 }
 
 app-card {
-	@include media-breakpoint-up(xl) {
-		width: 12.5%;
+	width: 25%;
+	@include media-breakpoint-up(sm) {
+		width: 12%;
 	}
 }

@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/">
-			<img src="assets/header-card.png" alt="" width="73" height="48" />
+			<img src="assets/header-card.png" alt=""  height="40" />
 		</a>
 		<button
+			#toggler
 			class="navbar-toggler"
 			type="button"
 			data-bs-toggle="collapse"
@@ -20,13 +21,13 @@
 					href="javascript:void(0)"
 					routerLink="/"
 					routerLinkActive="active"
-					[routerLinkActiveOptions]="{ exact: true }">
+					[routerLinkActiveOptions]="{ exact: true }" (click)="toggler.click()">
 					Home
 				</a>
-				<a class="nav-link" href="javascript:void(0)" routerLink="/play" routerLinkActive="active">
+				<a class="nav-link" href="javascript:void(0)" routerLink="/play" routerLinkActive="active" (click)="toggler.click()">
 					Play Now
 				</a>
-				<a class="nav-link" href="javascript:void(0)" routerLink="/instructions" routerLinkActive="active">
+				<a class="nav-link" href="javascript:void(0)" routerLink="/instructions" routerLinkActive="active" (click)="toggler.click()">
 					Instructions
 				</a>
 			</div>
