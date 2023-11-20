@@ -5,6 +5,7 @@ import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontaweso
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
+import { LayoutService } from './services/layout.service';
 
 @Component({
 	selector: 'app-root',
@@ -15,7 +16,8 @@ import { FooterComponent } from './common/footer/footer.component';
 })
 export class AppComponent {
 	iconLibrary = inject(FaIconLibrary);
-
+	layoutService= inject(LayoutService);
+	
 	constructor() {
 		this.iconLibrary.addIconPacks(fas);
 	}

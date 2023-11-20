@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Card } from '../../models/card.model';
 import { CardListComponent } from '../card-list/card-list.component';
+import { LayoutService } from '../../../services/layout.service';
 
 @Component({
 	selector: 'app-game-landing',
@@ -10,7 +11,7 @@ import { CardListComponent } from '../card-list/card-list.component';
 	templateUrl: './game-landing.component.html',
 	styleUrl: './game-landing.component.scss',
 })
-export class GameLandingComponent {
+export class GameLandingComponent implements OnInit, OnDestroy {
 	items: Card[] = [
 		{ id: 'heart', icon: 'heart' },
 		{ id: 'ghost', icon: 'ghost' },
@@ -25,4 +26,13 @@ export class GameLandingComponent {
 		{ id: 'wand-sparkles', icon: 'wand-sparkles' },
 		{ id: 'vr-cardboard', icon: 'vr-cardboard' },
 	];
+
+	constructor(private layoutService: LayoutService) {}
+	
+	ngOnDestroy(): void {
+		this.layoutService.showFooter();
+	}
+	ngOnInit(): void {
+		this.layoutService.hideFooter();
+	}
 }
