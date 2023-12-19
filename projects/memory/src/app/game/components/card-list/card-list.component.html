@@ -1,10 +1,31 @@
-<div class="container-fluid d-flex justify-content-center px-md-4">
-	<h3 class="text-muted fw-bold">{{ elapsedTime }}</h3>
-</div>
-<div class="container card-list mb-4 px-5 px-sm-1">
-	<div class="row g-2 g-md-3">
-		@for (card of cards; track card.id) {
-		<app-card class="flex-grow-0" [card]="card"></app-card>
-		}
+@if(gameCompleted()) {
+<div class="container" [@fadeSlideIn]>
+	<div class="row">
+		<img
+			class="img-fluid rounded-3 col-md-6 mx-auto"
+			width="546px"
+			height="546px"
+			src="assets/game/champion.webp" />
+	</div>
+	<p class="text-center text-primary fs-4 fw-bold mt-3">{{ elapsedTime }}</p>
+	<div class="row">
+		<div class="col text-center">
+			<button type="button" class="btn btn-primary" (click)="restartGame()">Play again</button>
+		</div>
 	</div>
 </div>
+
+} @else {
+<div [@fadeSlideOut]>
+	<div class="container-fluid d-flex justify-content-center px-md-4">
+		<h3 class="text-muted fw-bold">{{ elapsedTime }}</h3>
+	</div>
+	<div class="container card-list mb-4 px-5 px-sm-1">
+		<div class="row g-2 g-md-3">
+			@for (card of cards; track card.id) {
+			<app-card class="flex-grow-0" [card]="card"></app-card>
+			}
+		</div>
+	</div>
+</div>
+}

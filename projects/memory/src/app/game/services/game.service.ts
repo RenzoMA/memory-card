@@ -10,6 +10,7 @@ import {
 	map,
 	merge,
 	of,
+	startWith,
 	takeUntil,
 	tap,
 	timer,
@@ -23,8 +24,8 @@ export class GameService {
 	cardComponentSelection: Observable<CardComponent>[] = [];
 	cardComponents: CardComponent[] = [];
 
-  gameCompleted$ = new Subject<void>();
-  
+	gameCompleted$ = new Subject<boolean>();
+
 	gameTimer$ = defer(() => {
 		return merge(...this.cardComponentSelection).pipe(
 			first(),
@@ -34,6 +35,7 @@ export class GameService {
 			map(seconds => {
 				return this.formatTime(seconds);
 			}),
+			startWith('00:00'),
 			takeUntil(this.gameCompleted$)
 		);
 	});
@@ -69,8 +71,7 @@ export class GameService {
 			tap(() => {
 				const isGameCompleted = this.cardComponents.every(component => !component.isFaceDown);
 				if (isGameCompleted) {
-					this.gameCompleted$.next();
-					this.gameCompleted$.complete();
+					this.gameCompleted$.next(true);
 				}
 			})
 		);
@@ -82,6 +83,23 @@ export class GameService {
 		this.cardComponents = componentCards;
 		this.cardComponentSelection = componentCards.map(card => card.selected.asObservable());
 		return this.startGame$;
+	}
+
+	restartGame() {
+		this.gameCompleted$.next(false);
+		this.gameTimer$ = defer(() => {
+			return merge(...this.cardComponentSelection).pipe(
+				first(),
+				concatMap(() => {
+					return timer(0, 1000);
+				}),
+				map(seconds => {
+					return this.formatTime(seconds);
+				}),
+				startWith('00:00'),
+				takeUntil(this.gameCompleted$)
+			);
+		});
 	}
 
 	formatTime(seconds: number): string {
