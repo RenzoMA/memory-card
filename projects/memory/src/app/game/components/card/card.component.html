@@ -9,7 +9,7 @@
 	(click)="reveal()">
 	<div class="card-body p-0 d-flex">
 		@if (isFaceDown) {
-		<img class="img-fluid" src="assets/card/back-card.png" />
+		<img class="img-fluid rounded-3 border border-primary border-2" width="135px" height="183px" src="assets/card/back-card.png" />
 		} @else {
 		<div class="d-flex align-items-center justify-content-center w-100">
 			<fa-icon [icon]="card.icon" class="d-flex align-items-center justify-content-center w-100 h-100" [style.color]="card.color"></fa-icon>
