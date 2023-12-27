@@ -16,23 +16,27 @@ export class GameLandingComponent implements OnInit, OnDestroy {
 		{ id: 'heart', icon: 'heart' },
 		{ id: 'ghost', icon: 'ghost' },
 		{ id: 'gamepad', icon: 'gamepad' },
-		{ id: 'diamond', icon: 'diamond' },
-		{ id: 'dragon', icon: 'dragon' },
-		{ id: 'scroll', icon: 'scroll' },
-		{ id: 'puzzle-piece', icon: 'puzzle-piece' },
-		{ id: 'dice', icon: 'dice' },
-		{ id: 'ring', icon: 'ring' },
-		{ id: 'headset', icon: 'headset' },
-		{ id: 'wand-sparkles', icon: 'wand-sparkles' },
-		{ id: 'vr-cardboard', icon: 'vr-cardboard' },
+		// { id: 'diamond', icon: 'diamond' },
+		// { id: 'dragon', icon: 'dragon' },
+		// { id: 'scroll', icon: 'scroll' },
+		// { id: 'puzzle-piece', icon: 'puzzle-piece' },
+		// { id: 'dice', icon: 'dice' },
+		// { id: 'ring', icon: 'ring' },
+		// { id: 'headset', icon: 'headset' },
+		// { id: 'wand-sparkles', icon: 'wand-sparkles' },
+		// { id: 'vr-cardboard', icon: 'vr-cardboard' },
 	];
 
 	constructor(private layoutService: LayoutService) {}
-	
+
 	ngOnDestroy(): void {
 		this.layoutService.showFooter();
 	}
 	ngOnInit(): void {
 		this.layoutService.hideFooter();
+	}
+
+	resetCards(): void {
+		this.items = [...this.items];
 	}
 }

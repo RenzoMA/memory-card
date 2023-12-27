@@ -1,4 +1,14 @@
-import { AfterViewInit, Component, DestroyRef, Input, QueryList, ViewChildren, inject } from '@angular/core';
+import {
+	AfterViewInit,
+	Component,
+	DestroyRef,
+	EventEmitter,
+	Input,
+	Output,
+	QueryList,
+	ViewChildren,
+	inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Card } from '../../models/card.model';
 import { CardComponent } from '../card/card.component';
@@ -44,6 +54,7 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
 })
 export class CardListComponent implements AfterViewInit {
 	@Input({ required: true, transform: duplicateAndRamdomize }) cards: Card[] = [];
+	@Output() reset = new EventEmitter<void>();
 
 	@ViewChildren(CardComponent) componentCards!: QueryList<CardComponent>;
 
@@ -63,6 +74,7 @@ export class CardListComponent implements AfterViewInit {
 
 	restartGame() {
 		this.gameService.restartGame();
+		this.reset.emit();
 		setTimeout(() => {
 			this.setUpgame();
 		});

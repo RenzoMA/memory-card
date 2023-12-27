@@ -17,13 +17,10 @@ function getRandomInt(min: number, max: number): number {
 }
 
 function generatePastelColor(): string {
-	// Adjusting the range to make pastel colors 10% darker
-	// Using the range 115 to 255 for each color component
 	let r = getRandomInt(20, 120);
 	let g = getRandomInt(20, 80);
 	let b = getRandomInt(20, 120);
 
-	// Convert to hexadecimal format
 	return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b
 		.toString(16)
 		.padStart(2, '0')}`;
