@@ -68,6 +68,7 @@ export class GameService {
 					);
 				}
 			}),
+			delay(75),
 			tap(() => {
 				const isGameCompleted = this.cardComponents.every(component => !component.isFaceDown);
 				if (isGameCompleted) {
